@@ -1,0 +1,29 @@
+body{
+    background-color: black;
+}
+
+body .navbar #color a{
+    color: rgb(25, 179, 179);
+}
+
+#home {
+    margin-top: 200px;
+}
+
+#bottom {
+    background-color: rgb(25, 179, 179);
+}
+
+.container-lg .row .col a{
+    background-color: rgb(18, 212, 212);
+
+}
+
+.container form .row .col-md-6{
+    background-color: rgb(53, 57, 53);
+    color: white;
+}
+
+#loginWord{
+    color:white;
+}
