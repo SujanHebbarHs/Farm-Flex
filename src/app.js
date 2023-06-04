@@ -4,6 +4,7 @@ const path = require("path");
 const bcrypt = require("bcryptjs");
 require("./db/conn");
 const Register = require("./models/registers");
+const Query = require("./models/reachUs");
 const hbs = require("hbs");
 const cookieParser = require("cookie-parser");
 const auth = require("./middleware/auth");
@@ -26,6 +27,34 @@ hbs.registerPartials(partials_path);
 app.get("/",(req,res)=>{
     res.render("index");
 });
+
+app.get("/query",auth,(req,res)=>{
+    res.render("query");
+})
+
+app.post("/query",async(req,res)=>{
+
+    try {
+        console.log("Yo");
+        const userQuery = new Query({
+
+            firstname:req.body.firstname,
+            lastname:req.body.lastname,
+            email:req.body.email,
+            pid:req.body.pid,
+            category:req.body.category,
+            description:req.body.description
+
+        })
+        console.log(userQuery.firstname);
+        console.log(userQuery.pid);
+        await userQuery.save();
+        res.status(201).render("index");
+
+    }catch (err) {
+        res.status(404).send(err);
+    }
+})
 
 app.get("/secret", auth, (req,res)=>{
     console.log(`The cookie is :${req.cookies.jwt}`)
@@ -126,7 +155,7 @@ try {
     console.log("Token: "+token);
 
     res.cookie("jwt",token,{
-        expires:new Date(Date.now() + 10000),
+        expires:new Date(Date.now() + 30000),
         httpOnly:true
     })
 
