@@ -56,11 +56,6 @@ app.post("/query",async(req,res)=>{
     }
 })
 
-app.get("/secret", auth, (req,res)=>{
-    console.log(`The cookie is :${req.cookies.jwt}`)
-    res.render("secret");
-})
-
 app.get("/logout",auth,async(req,res)=>{
     try{
 
@@ -96,7 +91,7 @@ app.post("/register",async(req,res)=>{
         const password = req.body.password;
         const cpassword = req.body.confirmpassword;
 
-        if(password ===cpassword){
+        if(password === cpassword){
 
             const registerEmployee = new Register({
 
