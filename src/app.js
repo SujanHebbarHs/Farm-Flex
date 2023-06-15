@@ -35,7 +35,6 @@ app.get("/query",auth,(req,res)=>{
 app.post("/query",async(req,res)=>{
 
     try {
-        console.log("Yo");
         const userQuery = new Query({
 
             firstname:req.body.firstname,
@@ -59,12 +58,14 @@ app.post("/query",async(req,res)=>{
 app.get("/logout",auth,async(req,res)=>{
     try{
 
-        //logout only the current user
+//Logout only the current user
+
         // req.user.tokens = req.user.tokens.filter((obj)=>{
         //     return (obj.token !==req.token);
         // })
 
-        //logout all users
+//Logout all users
+
         req.user.tokens=[];
         
         res.clearCookie("jwt");
